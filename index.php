@@ -167,9 +167,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 <h5 class='card-title'>" . $row['title'] . "</h5>
                                 <p class='card-text' >" . $row['description'] . "</p>
                             </div>
-                            <div class='btn-container'>
-                                <form id='delForm' action='/MyNotes/index.php' method='post'>
-                                    <button class='btn btn-sm btn-primary edit' data-bs-toggle='modal' data-bs-target='#editModal'>Update</button>
+                            <div class='btn-container d-flex'>
+                                <button class='btn btn-sm btn-primary edit' data-bs-toggle='modal' data-bs-target='#editModal'>Update</button>
+                                <form class='mx-1' id='delForm' action='/MyNotes/index.php' method='post'>
                                     <input type='hidden' name='DelSno' id='DelSno' value='".$row['sno']."'>
                                     <button class='btn btn-sm btn-primary delete'>Delete</button>
                                 </form>
@@ -201,8 +201,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         let deletes = document.getElementsByClassName("delete");
         Array.from(deletes).forEach((e) => {
             e.addEventListener("click", (element) => {
-                parentNode = element.target.parentNode.parentNode.parentNode;
-                sno = parentNode.id;
+                ParentNode = element.target.parentNode.parentNode.parentNode;
+                sno = ParentNode.id;
                 if (confirm("Do you want to delete it?")) {
                     element.target.setAttribute("type", "submit");
                 }
@@ -212,6 +212,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             })
         })
     </script>
+    <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
 </body>
 
 </html>
